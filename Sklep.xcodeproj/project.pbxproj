@@ -18,6 +18,9 @@
 		006828CE2011204A001582E0 /* CDTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006828CD2011204A001582E0 /* CDTableViewController.swift */; };
 		006828D0201122CF001582E0 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006828CF201122CF001582E0 /* CustomTableViewCell.swift */; };
 		0086C05D201E7A2300B272D0 /* PlytaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086C05C201E7A2300B272D0 /* PlytaViewController.swift */; };
+		0086C05F201E845400B272D0 /* Koszyk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086C05E201E845400B272D0 /* Koszyk.swift */; };
+		0086C061201EA29000B272D0 /* KoszykCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086C060201EA29000B272D0 /* KoszykCell.swift */; };
+		0086C063201EA2CF00B272D0 /* KoszykTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086C062201EA2CF00B272D0 /* KoszykTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		006828CD2011204A001582E0 /* CDTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDTableViewController.swift; sourceTree = "<group>"; };
 		006828CF201122CF001582E0 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		0086C05C201E7A2300B272D0 /* PlytaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlytaViewController.swift; sourceTree = "<group>"; };
+		0086C05E201E845400B272D0 /* Koszyk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koszyk.swift; sourceTree = "<group>"; };
+		0086C060201EA29000B272D0 /* KoszykCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoszykCell.swift; sourceTree = "<group>"; };
+		0086C062201EA2CF00B272D0 /* KoszykTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoszykTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,9 @@
 				006828CF201122CF001582E0 /* CustomTableViewCell.swift */,
 				005855AB2011297300FAE95D /* KsiazkaViewController.swift */,
 				0086C05C201E7A2300B272D0 /* PlytaViewController.swift */,
+				0086C05E201E845400B272D0 /* Koszyk.swift */,
+				0086C060201EA29000B272D0 /* KoszykCell.swift */,
+				0086C062201EA2CF00B272D0 /* KoszykTableViewController.swift */,
 			);
 			path = Sklep;
 			sourceTree = "<group>";
@@ -155,12 +164,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				006828D0201122CF001582E0 /* CustomTableViewCell.swift in Sources */,
+				0086C063201EA2CF00B272D0 /* KoszykTableViewController.swift in Sources */,
 				006828CC20112023001582E0 /* HistoryczneTableViewController.swift in Sources */,
+				0086C061201EA29000B272D0 /* KoszykCell.swift in Sources */,
 				002DCE122010F41B0024A2F3 /* ViewController.swift in Sources */,
 				002DCE102010F41B0024A2F3 /* AppDelegate.swift in Sources */,
 				006828CE2011204A001582E0 /* CDTableViewController.swift in Sources */,
 				0086C05D201E7A2300B272D0 /* PlytaViewController.swift in Sources */,
 				006828CA20111FA6001582E0 /* FantasyTableViewController.swift in Sources */,
+				0086C05F201E845400B272D0 /* Koszyk.swift in Sources */,
 				005855AC2011297300FAE95D /* KsiazkaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

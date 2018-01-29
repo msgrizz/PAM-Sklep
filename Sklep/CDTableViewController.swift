@@ -8,20 +8,20 @@
 
 import UIKit
 
-class CDTableViewController: UITableViewController {
+class CDTableViewController: UITableViewController, DelegateKoszyk, DelegateView {
     
     var plytaNazwa = ["p1", "k2", "k3", "k4", "k5", "k6", "k7", "k8"]
-    
     var plytaCena = [15, 20, 25, 10, 54, 12, 34, 60]
+    var kosz = Koszyk()
+    weak var delegate: DelegateTable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidLoad()
+        passDataBackwards()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +47,6 @@ class CDTableViewController: UITableViewController {
         
         cell.nazwa.text = plytaNazwa[indexPath.row]
         cell.cena.text = String(plytaCena[indexPath.row]) + " zł"
-        // Configure the cell...
         
         return cell
     }
@@ -62,7 +61,27 @@ class CDTableViewController: UITableViewController {
                 destinationController.cenaInt = plytaCena[indexPath.row]
             }
         }
+        if segue.identifier == "showKoszyk"
+        {
+            let destinationController = segue.destination as! KoszykTableViewController
+            destinationController.k = kosz
+            destinationController.delegate = self
+        }
     }
+    
+    func passDataBackwards ()
+    {
+        delegate?.backTable(with: kosz)
+    }
+    
+    func backView(with kosz: Koszyk) {
+        self.kosz = kosz
+    }
+    
+    func backKoszyk(with kosz: Koszyk) {
+        self.kosz = kosz
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -1,30 +1,36 @@
 //
-//  HistoryczneTableViewController.swift
+//  KoszykTableViewController.swift
 //  Sklep
 //
-//  Created by Rafael Takaka on 18.01.2018.
+//  Created by Rafael Takaka on 29.01.2018.
 //  Copyright © 2018 Rafael Takaka. All rights reserved.
 //
 
 import UIKit
 
-class HistoryczneTableViewController: UITableViewController, DelegateView, DelegateKoszyk {
+protocol DelegateKoszyk:class {
+    func backKoszyk (with kosz:Koszyk)
+}
+
+class KoszykTableViewController: UITableViewController {
     
-    var ksiazkaNazwa = ["k1", "k2", "k3", "k4", "k5", "k6", "k7", "k8"]
-    var ksiazkaCena = [15, 20, 25, 10, 54, 12, 34, 60]
-    var kosz = Koszyk()
-    weak var delegate: DelegateTable?
+    //var nazwyArray = [String]()
+    //var cenyArray = [Int]()
+    var k:Koszyk!
+    weak var delegate:DelegateKoszyk?
+    @IBOutlet var nazwa: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nazwa.text = String(k.getSuma()) + " zł"
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidLoad()
-        passDataBackwards()
-    }
-
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -38,52 +44,33 @@ class HistoryczneTableViewController: UITableViewController, DelegateView, Deleg
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return ksiazkaNazwa.count
+        return k.getIlosc()
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        
-        cell.nazwa.text = ksiazkaNazwa[indexPath.row]
-        cell.cena.text = String(ksiazkaCena[indexPath.row]) + " zł"
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> KoszykCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! KoszykCell
         // Configure the cell...
-        
+
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showKsiazka"
-        {
-            if let indexPath = tableView.indexPathForSelectedRow
-            {
-                let destinationController = segue.destination as! KsiazkaViewController
-                destinationController.nazwaString = ksiazkaNazwa[indexPath.row]
-                destinationController.cenaInt = ksiazkaCena[indexPath.row]
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
+    {
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Share" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+            
+            self.k?.deleteItem(id: indexPath.row)
+            self.delegate?.backKoszyk(with: self.k)
             }
-        }
-        if segue.identifier == "showKoszyk"
-        {
-            let destinationController = segue.destination as! KoszykTableViewController
-            destinationController.k = kosz
-            destinationController.delegate = self
-        }
+        )
+        return [deleteAction]
     }
     
     func passDataBackwards ()
     {
-        delegate?.backTable(with: kosz)
+        delegate?.backKoszyk(with: k)
     }
-    
-    func backView(with kosz: Koszyk) {
-        self.kosz = kosz
-    }
-    
-    func backKoszyk(with kosz: Koszyk) {
-        self.kosz = kosz
-    }
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
