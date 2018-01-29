@@ -15,8 +15,8 @@ protocol DelegateTable:class
 
 class FantasyTableViewController: UITableViewController, DelegateView, DelegateKoszyk {
 
-    var ksiazkaNazwa = ["k1", "k2", "k3", "k4", "k5", "k6", "k7", "k8"]
-    var ksiazkaCena = [15, 20, 25, 10, 54, 12, 34, 60]
+    var ksiazkaNazwa = ["K. fantasy 1", "K. fantasy 2", "K. fantasy 3", "K. fantasy 4", "K. fantasy 5", "K. fantasy 6", "K. fantasy 7", "K. fantasy 8", "K. fantasy 9", "K. fantasy 10", "K. fantasy 11", "K. fantasy 12", "K. fantasy 13", "K. fantasy 14", "K. fantasy 15"]
+    var ksiazkaCena = [15, 20, 25, 10, 54, 12, 34, 60, 20, 25, 10, 54, 12, 34, 60]
     var kosz:Koszyk!
     weak var delegate: DelegateTable?
 

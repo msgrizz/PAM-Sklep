@@ -10,7 +10,7 @@ import UIKit
 
 class CDTableViewController: UITableViewController, DelegateKoszyk, DelegateView {
     
-    var plytaNazwa = ["p1", "k2", "k3", "k4", "k5", "k6", "k7", "k8"]
+    var plytaNazwa = ["Płyta 1", "Płyta 2", "Płyta 3", "Płyta 4", "Płyta 5", "Płyta 6", "Płyta 7", "Płyta 8"]
     var plytaCena = [15, 20, 25, 10, 54, 12, 34, 60]
     var kosz:Koszyk!
     weak var delegate: DelegateTable?

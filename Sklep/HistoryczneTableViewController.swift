@@ -10,8 +10,8 @@ import UIKit
 
 class HistoryczneTableViewController: UITableViewController, DelegateView, DelegateKoszyk {
     
-    var ksiazkaNazwa = ["k1", "k2", "k3", "k4", "k5", "k6", "k7", "k8"]
-    var ksiazkaCena = [15, 20, 25, 10, 54, 12, 34, 60]
+    var ksiazkaNazwa = ["K. Histor. 1", "K. Histor. 2", "K. Histor. 3", "K. Histor. 4","K. Histor. 5", "K. Histor. 6","K. Histor. 7", "K. Histor. 8", "K. Histor. 9"]
+    var ksiazkaCena = [15, 20, 25, 10, 54, 12, 34, 60, 99]
     var kosz:Koszyk!
     weak var delegate: DelegateTable?
     
