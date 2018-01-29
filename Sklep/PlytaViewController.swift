@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class PlytaViewController: UIViewController, DelegateKoszyk {
     
@@ -18,6 +19,7 @@ class PlytaViewController: UIViewController, DelegateKoszyk {
     var nazwaString:String?
     var k = Koszyk()
     weak var delegate:DelegateView?
+    var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +68,33 @@ class PlytaViewController: UIViewController, DelegateKoszyk {
     func passDataBackwards()
     {
         delegate?.backView(with: k)
+    }
+    
+    @IBAction func playSound()
+    {
+        guard let url = Bundle.main.url(forResource: "arctic", withExtension: "mp3") else {return}
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            guard let player = player else {return}
+            player.play()
+        }
+        catch let error
+        {
+            print (error.localizedDescription)
+        }
+    }
+    
+    @IBAction func stopSound()
+    {
+        guard let player = player else {return}
+        if (player.isPlaying)
+        {
+            player.stop()
+            player.currentTime = 0.0
+        }
     }
     /*
     // MARK: - Navigation
