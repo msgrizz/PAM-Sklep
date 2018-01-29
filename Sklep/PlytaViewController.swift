@@ -27,6 +27,11 @@ class PlytaViewController: UIViewController, DelegateKoszyk {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidLoad()
+        passDataBackwards()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,6 +55,7 @@ class PlytaViewController: UIViewController, DelegateKoszyk {
         let alertController = UIAlertController(title: "Dodano", message: "Dodano przedmiot do koszyka", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         present(alertController, animated: true, completion: nil)
+        passDataBackwards()
     }
     
     func backKoszyk(with kosz: Koszyk) {

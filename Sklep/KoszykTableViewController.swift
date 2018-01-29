@@ -18,12 +18,14 @@ class KoszykTableViewController: UITableViewController {
     //var cenyArray = [Int]()
     var k:Koszyk!
     weak var delegate:DelegateKoszyk?
-    @IBOutlet var nazwa: UILabel!
+    @IBOutlet var suma: UILabel!
+    @IBOutlet var ilosc: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nazwa.text = String(k.getSuma()) + " zł"
+        suma.text = String(k.getSuma()) + " zł"
+        ilosc.text = String(k.getIlosc())
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,19 +50,23 @@ class KoszykTableViewController: UITableViewController {
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> KoszykCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! KoszykCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         // Configure the cell...
-
+        cell.nazwa.text = k.getNazwa(id: indexPath.row)
+        cell.cena.text = String(k.getCena(id: indexPath.row)) + " zł"
         return cell
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Share" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Usuń" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
             
             self.k?.deleteItem(id: indexPath.row)
+            self.suma.text = String(self.k.getSuma()) + " zł"
+            self.ilosc.text = String(self.k.getIlosc())
             self.delegate?.backKoszyk(with: self.k)
+            self.tableView.reloadData()
             }
         )
         return [deleteAction]

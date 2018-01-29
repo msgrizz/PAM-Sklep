@@ -12,7 +12,7 @@ class CDTableViewController: UITableViewController, DelegateKoszyk, DelegateView
     
     var plytaNazwa = ["p1", "k2", "k3", "k4", "k5", "k6", "k7", "k8"]
     var plytaCena = [15, 20, 25, 10, 54, 12, 34, 60]
-    var kosz = Koszyk()
+    var kosz:Koszyk!
     weak var delegate: DelegateTable?
 
     override func viewDidLoad() {
@@ -59,6 +59,8 @@ class CDTableViewController: UITableViewController, DelegateKoszyk, DelegateView
                 let destinationController = segue.destination as! PlytaViewController
                 destinationController.nazwaString = plytaNazwa[indexPath.row]
                 destinationController.cenaInt = plytaCena[indexPath.row]
+                destinationController.k = kosz
+                destinationController.delegate = self
             }
         }
         if segue.identifier == "showKoszyk"
